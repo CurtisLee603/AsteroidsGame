@@ -1,5 +1,6 @@
 Star[] stars = new Star[100];
 Spaceship bob = new Spaceship();
+ArrayList <Asteroid> rocks = new ArrayList <Asteroid>();
 boolean wIsPressed = false;
 boolean aIsPressed = false;
 boolean dIsPressed = false;
@@ -9,12 +10,24 @@ public void setup()
   for(int i = 0; i < stars.length; i++) {
     stars[i] = new Star();
   }
+  for(int i = 0; i < 10; i++) {
+    rocks.add(new Asteroid(Math.random() * 3 + 1));
+  }
 }
 public void draw() 
 {
   background(0);
   for(int i = 0; i < stars.length; i++) {
     stars[i].show();
+  }
+  for(int i = 0; i < rocks.size(); i++) {
+    rocks.get(i).show();
+    rocks.get(i).moving();
+    float d = dist((float)rocks.get(i).getX(), (float)rocks.get(i).getY(), (float)bob.getX(), (float)bob.getY());
+    System.out.println(d);
+    if(d < 100) {
+      rocks.remove(i);
+    }
   }
   bob.show();
   bob.move();
