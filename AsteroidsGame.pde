@@ -24,6 +24,7 @@ public void draw()
     rocks.get(i).show();
     rocks.get(i).moving();
     float d = dist((float)rocks.get(i).getX(), (float)rocks.get(i).getY(), (float)bob.getX(), (float)bob.getY());
+    System.out.println(d);
     if(d < 100) {
       rocks.remove(i);
     }
